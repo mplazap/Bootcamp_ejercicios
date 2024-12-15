@@ -15,7 +15,7 @@ class Usuarios:
 
     # Método para calcular la edad
     def calcular_edad(self):
-        nacimiento = input(f"Dime tu año de nacimiento de {self.nombre}: ")
+        nacimiento = input(f"Dime tu año de nacimiento {self.nombre}: ")
         now = datetime.now()
         self.edad = now.year - int(nacimiento)
 
