@@ -135,5 +135,7 @@ while True:
                 # Salir del programa1
                 print("¡Hasta pronto!")
                 break
+    
+    # Si se elige una opcion incorrecta
     else:
         print("No has elegido una opción correcta.")

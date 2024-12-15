@@ -1,0 +1,1 @@
+El ejercicio esta en el archivo .py. En el notebook esta tambien el codigo con mis comentarios
