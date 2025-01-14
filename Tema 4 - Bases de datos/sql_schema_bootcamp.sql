@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS bootcamps;
+
+CREATE DATABASE IF NOT EXISTS bootcamps;
+
+USE bootcamps;
+
+CREATE TABLE IF NOT EXISTS modulos (
+    modulo_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
