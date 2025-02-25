@@ -131,3 +131,27 @@ st.plotly_chart(fig)
 
 fig = px.scatter(df_filtered, x='bill_length_mm', y='flipper_length_mm', color='species', facet_col='sex')
 st.plotly_chart(fig)
+
+
+
+# Botones de descargar el CSV
+st.header('Descargar datos')
+st.write('Descarga el dataset original o con los datos filtrados')
+
+col1,col2 = st.columns(2)
+with col1:
+    st.download_button(
+        'Descargar datos originales',
+        data=df.to_csv(index=False),
+        file_name='penguins.csv',
+        mime='text/csv'
+    )
+    
+with col2:
+    st.download_button(
+        'Descargar datos filtrados',
+        data=df_filtered.to_csv(index=False),
+        file_name='penguins_filtered.csv',
+        mime='text/csv'
+    )
+    
