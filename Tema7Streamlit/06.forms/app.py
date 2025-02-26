@@ -2,6 +2,7 @@ import streamlit as st
 
 st.title("Ejemplo de formulario de Streamlit")
 
+
 # Creamos un formulario llamado "mi_formulario"
 with st.form("mi_formulario"):
     st.write("Por favor, completa los siguientes campos:")
