@@ -123,22 +123,8 @@ st.divider()
 
 st.markdown("<h2 style='text-decoration: underline;'>4. Gráficos multivariantes</h2>", unsafe_allow_html=True)
 
-# 🔹 **Usar los filtros ya existentes en el código**
-numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
-categorical_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()
-
-# 🔹 **Inicializar los filtros globales si no existen**
-if "selected_numeric_x" not in st.session_state:
-    st.session_state["selected_numeric_x"] = numeric_cols[0]
-
-if "selected_numeric_y" not in st.session_state:
-    st.session_state["selected_numeric_y"] = numeric_cols[1]
-
-if "selected_categorical" not in st.session_state and categorical_cols:
-    st.session_state["selected_categorical"] = categorical_cols[0]
-
-# 🔹 **1️⃣ HEATMAP - Matriz de Correlación**
-st.subheader("🔍 Heatmap de Correlación")
+# Heatmap con if par aasegurarnos de que hay suficientes columnas numericas
+st.subheader("Heatmap")
 
 if len(numeric_cols) > 1:
     fig_heatmap, ax = plt.subplots(figsize=(10, 6))
@@ -148,8 +134,8 @@ if len(numeric_cols) > 1:
 else:
     st.warning("No hay suficientes columnas numéricas para generar un heatmap.")
 
-# 🔹 **2️⃣ PAIRPLOT - Relaciones entre Variables**
-st.subheader("🔍 Pairplot de Variables Numéricas")
+# Pairplot tambien con if para comprobar la cantidad ed columnas numericas
+st.subheader("Pairplot")
 
 df_sample = df.sample(500, random_state=42) if len(df) > 500 else df
 
@@ -159,28 +145,24 @@ if len(numeric_cols) > 1:
 else:
     st.warning("No hay suficientes columnas numéricas para generar un pairplot.")
 
-# 🔹 **3️⃣ SCATTERPLOT con Hue (Usando los Filtros Globales Existentes)**
-st.subheader("🔍 Scatterplot con Hue")
-st.write('Selecciona el corte en el recuadro de la derecha ')
+# Scatterplot con Hue
+st.subheader("Scatterplot con Hue")
+st.write('Selecciona el tipo de corte en el recuadro de la derecha ')
 
 
-# ✅ **Ahora usamos los filtros globales existentes**
+# Usamos los filtros globales existentes
 col_x = st.session_state["selected_numeric_x"]
 col_y = st.session_state["selected_numeric_y"]
 color_category = st.session_state["selected_categorical"]
 
-# 🔹 **Corrección para evitar errores en Plotly**
+# Usamos el Dataframe filtrado
 df_filtered = df[[col_x, col_y] + ([color_category] if color_category else [])].copy()
 
-# Convertir la variable categórica a string si es necesaria
-if color_category:
-    df_filtered[color_category] = df_filtered[color_category].astype(str)
-
-# Crear scatterplot con Plotly
+# Creamos el scatterplot con Plotly
 fig_scatter = px.scatter(df_filtered, x=col_x, y=col_y, 
                          color=color_category if color_category else None,
-                         title=f"Scatterplot: {col_x} vs {col_y}",
+                         title=f"Scatterplot",
                          opacity=0.7, size_max=10)
 
-# Mostrar el gráfico en Streamlit
+# Mostramos el gráfico
 st.plotly_chart(fig_scatter, use_container_width=True)
