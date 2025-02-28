@@ -6,13 +6,13 @@ st.set_page_config(
 )
 
 st.title('Página home')
-st.write('Ejemplo de aplicación de Streamlit para EDA, regresión y clasificación.')
+st.write('Aplicación para visualización de EDAs, regresión y clasificación.')
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
     if st.button('Ir a EDAs'):
-        st.switch_page('pages/1 📊 EDAs.py')
+        st.switch_page('pages/1-EDA.py')
         
 with col2:
     if st.button('Ir a Regresión'):
