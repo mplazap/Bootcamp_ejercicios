@@ -1,0 +1,2 @@
+*.csv,[[:space:]]*.py,[[:space:]]*.ipynb,[[:space:]]*.joblib,[[:space:]]*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.joblib filter=lfs diff=lfs merge=lfs -text
